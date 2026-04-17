@@ -17,7 +17,7 @@
 body {
   margin: 0;
   padding: 0;
-  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  font-family: 'Poppins', system-ui, sans-serif;
   background-color: var(--bg-color);
   color: var(--text-main);
   box-sizing: border-box;
@@ -96,17 +96,25 @@ p {
   color: var(--text-main);
 }
 
-.logo-icon {
-  width: 32px;
-  height: 32px;
-  background-color: var(--brand-color);
-  color: white;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-style: italic;
-  font-weight: bold;
+.logo-text {
+  font-family: 'Poppins', system-ui, sans-serif;
+  font-size: 1.25rem;
+  font-weight: 800;
+}
+
+.logo-text-zero {
+  color: var(--brand-color);
+}
+
+.logo-text-route {
+  color: var(--brand-blue);
+}
+
+.logo-image {
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+  display: block;
 }
 
 .header-subtitle {
@@ -335,7 +343,7 @@ input[type="range"]:active::-webkit-slider-thumb {
   border-radius: 9999px;
   background: linear-gradient(to bottom, #60a5fa, #2563eb);
   color: white;
-  font-family: 'Inter', system-ui, sans-serif;
+  font-family: 'Poppins', system-ui, sans-serif;
   font-size: 0.8125rem;
   font-weight: 700;
   letter-spacing: 0.05em;
@@ -774,6 +782,12 @@ input[type="range"]:active::-webkit-slider-thumb {
     margin-top: 10vh !important;
     margin-right: 1.25rem !important;
   }
+
+  .logo-text {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+  }
 }
 
 .suggestions-dropdown {
@@ -825,9 +839,10 @@ input[type="range"]:active::-webkit-slider-thumb {
 .preset-pill {
   background: transparent;
   border: 1px solid rgba(148, 163, 184, 0.4);
+  font-family: 'Poppins', system-ui, sans-serif;
   color: var(--text-main);
   border-radius: 9999px;
-  padding: 0.4rem 1rem;
+  padding: 0.4rem 0.9rem;
   font-size: 0.75rem;
   font-weight: 600;
   cursor: pointer;

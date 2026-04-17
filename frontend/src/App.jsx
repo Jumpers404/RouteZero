@@ -4,6 +4,7 @@ import { LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer, ReferenceL
 import { MapContainer, TileLayer, Marker, Polyline, Popup, useMap, ZoomControl } from 'react-leaflet';
 import L from 'leaflet';
 import './App.css';
+import logoImg from './assets/logo.png';
 
 // Fix leaflet default icon issue in React
 delete L.Icon.Default.prototype._getIconUrl;
@@ -259,6 +260,7 @@ function App() {
               ))}
             </span>
           </div>
+          <div className="info-row"><span className="info-label">Route Path: </span><span className="info-value bold">{routeSummary.destination}</span></div>
           <div className="info-row"><span className="info-label">Estimated Time:</span><span className="info-value bold">{routeSummary.time}</span></div>
           <div className="info-row"><span className="info-label">Distance:</span><span className="info-value bold">{routeSummary.distance}</span></div>
         </div>
@@ -333,7 +335,7 @@ function App() {
     <div className={`app-container ${isMobile ? 'mobile-google-maps-mode' : ''}`}>
       <header className="header">
         <div className="header-left">
-          <div className="logo"><div className="logo-icon">R</div><span>RouteZero</span></div>
+          <div className="logo"><img src={logoImg} alt="RouteZero" className="logo-image" /><span className="logo-text"><span className="logo-text-route">Route</span><span className="logo-text-zero">Zero</span></span></div>
           {!isMobile && <span className="header-subtitle">Dynamic & Quantum-Inspired Logistics</span>}
         </div>
 
