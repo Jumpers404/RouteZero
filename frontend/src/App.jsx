@@ -80,7 +80,7 @@ function App() {
   const [payloadWeight, setPayloadWeight] = useState(1200);
 
   // Readonly data
-  const [routeSummary, setRouteSummary] = useState({ route: "Calculating...", time: "--", distance: "--" });
+  const [routeSummary, setRouteSummary] = useState({ route: "A → C → E → B → D", time: "3h 45m", distance: "120 km" });
 
   useEffect(() => {
     const handleResize = () => {
@@ -222,11 +222,67 @@ function App() {
       </div>
 
       <div className="card" style={{ marginTop: '1.5rem' }}>
-        <div className="card-header"><h2 className="card-title">Route Summary</h2></div>
-        <div className="card-body right-sidebar-body">
-          <div className="info-row"><span className="info-label">Route:</span><span className="info-value bold route-path">{routeSummary.route}</span></div>
+        <div className="card-header" style={{ paddingBottom: '0.75rem', borderBottom: '1px solid rgba(226, 232, 240, 0.5)' }}>
+          <h2 className="card-title">Route Summary</h2>
+        </div>
+        <div className="card-body right-sidebar-body" style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem', paddingTop: '1rem' }}>
+          <div className="info-row" style={{ alignItems: 'center' }}>
+            <span className="info-label">Route:</span>
+            <span className="info-value bold route-path" style={{ display: 'flex', gap: '0.4rem', alignItems: 'center', flexWrap: 'wrap' }}>
+              {routeSummary.route.split('→').map((part, i, arr) => (
+                <React.Fragment key={i}>
+                  <span>{part.trim()}</span>
+                  {i < arr.length - 1 && <span style={{ color: '#cbd5e1', fontSize: '0.9em' }}>→</span>}
+                </React.Fragment>
+              ))}
+            </span>
+          </div>
           <div className="info-row"><span className="info-label">Estimated Time:</span><span className="info-value bold">{routeSummary.time}</span></div>
           <div className="info-row"><span className="info-label">Distance:</span><span className="info-value bold">{routeSummary.distance}</span></div>
+        </div>
+      </div>
+
+      <div className="card" style={{ marginTop: '1.5rem' }}>
+        <div className="card-header" style={{ paddingBottom: '0.75rem', borderBottom: '1px solid rgba(226, 232, 240, 0.5)' }}>
+          <h2 className="card-title">Sustainability Metrics</h2>
+        </div>
+        <div className="card-body right-sidebar-body" style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem', paddingTop: '1rem' }}>
+          <div className="info-row"><span className="info-label">CO₂ Saved:</span><span className="info-value bold">58 kg</span></div>
+          <div className="info-row"><span className="info-label">Fuel Saved:</span><span className="info-value bold">24.5 L</span></div>
+          <div className="info-row"><span className="info-label">Green Score:</span><span className="info-value bold" style={{ color: 'var(--success)', fontSize: '1.125rem' }}>92</span></div>
+        </div>
+      </div>
+
+      <div className="card" style={{ marginTop: '1.5rem' }}>
+        <div className="card-header" style={{ paddingBottom: '0.75rem', borderBottom: '1px solid rgba(226, 232, 240, 0.5)' }}>
+          <h2 className="card-title">Risk Analysis</h2>
+        </div>
+        <div className="card-body right-sidebar-body" style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem', paddingTop: '1rem' }}>
+          <div className="info-row"><span className="info-label">Weather Risk:</span><span className="info-value bold">65%</span></div>
+          <div className="info-row"><span className="info-label">Traffic Variance:</span><span className="info-value bold" style={{ color: 'var(--success)' }}>Moderate</span></div>
+          <div className="info-row" style={{ paddingBottom: '1rem', borderBottom: '1px solid rgba(226, 232, 240, 0.5)' }}><span className="info-label">Delay Probability:</span><span className="info-value bold">30%</span></div>
+
+          <h3 className="card-title" style={{ fontSize: '0.9375rem', marginTop: '0.5rem', marginBottom: '0.5rem' }}>Quantum Solver Active</h3>
+
+          <div className="info-row"><span className="info-label">Algorithm:</span><span className="info-value">SQA + MCMC</span></div>
+          <div className="info-row" style={{ alignItems: 'center' }}>
+            <span className="info-label">Iterations:</span>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+              <span className="info-value bold">2,341</span>
+              <div style={{ width: '60px', height: '6px', background: 'rgba(226,232,240,0.4)', borderRadius: '3px', overflow: 'hidden' }}>
+                <div style={{ width: '80%', height: '100%', background: 'var(--success)' }} />
+              </div>
+            </div>
+          </div>
+          <div className="info-row" style={{ alignItems: 'center' }}>
+            <span className="info-label">Confidence:</span>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+              <span className="info-value bold">94%</span>
+              <div style={{ width: '60px', height: '6px', background: 'rgba(226,232,240,0.4)', borderRadius: '3px', overflow: 'hidden' }}>
+                <div style={{ width: '94%', height: '100%', background: 'var(--success)' }} />
+              </div>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -340,8 +396,7 @@ function App() {
       {isMobile && (
         <div className={`bottom-sheet glass-panel ${bottomSheetExpanded ? 'expanded' : 'collapsed'}`}>
           <div className="bottom-sheet-handle" onClick={() => setBottomSheetExpanded(!bottomSheetExpanded)}>
-            <div className="handle-bar"></div>
-            <div style={{ textAlign: 'center', color: '#94a3b8', marginTop: 4 }}>
+            <div style={{ textAlign: 'center', color: '#94a3b8' }}>
               {bottomSheetExpanded ? <ChevronDown size={20} /> : <ChevronUp size={20} />}
             </div>
           </div>
@@ -355,22 +410,22 @@ function App() {
       {showDestModal && (
         <div className="modal-overlay">
           <div className="modal-content">
-            <h3 className="modal-title"><MapPin size={20} style={{ display: 'inline', marginRight: 8, color: 'var(--brand-blue)' }} /> Where are you going?</h3>
+            <h3 className="modal-title"><MapPin size={24} style={{ display: 'inline', marginRight: 12, color: 'var(--brand-blue)' }} /> Where to?</h3>
             <form onSubmit={handleSetDestination}>
-              <div className="input-with-unit" style={{ marginBottom: '1rem' }}>
-                <Search size={16} style={{ position: 'absolute', left: 10, color: 'gray' }} />
+              <div className="input-with-unit modern-search-input" style={{ marginBottom: '1.5rem' }}>
+                <Search size={18} style={{ position: 'absolute', left: 16, color: 'var(--text-muted)' }} />
                 <input
                   type="text"
                   autoFocus
                   placeholder="Enter a city or address..."
-                  style={{ paddingLeft: '2rem', textAlign: 'left' }}
+                  style={{ paddingLeft: '3rem', textAlign: 'left' }}
                   value={destQuery}
                   onChange={e => setDestQuery(e.target.value)}
                 />
               </div>
               <div style={{ display: 'flex', gap: '1rem' }}>
-                <button type="button" className="btn-primary" style={{ background: '#cbd5e1', color: 'black' }} onClick={() => setShowDestModal(false)}>Cancel</button>
-                <button type="submit" className="btn-primary btn-green" disabled={isRouting}>{isRouting ? 'Routing...' : 'Set Destination'}</button>
+                <button type="button" className="btn-primary btn-cancel" onClick={() => setShowDestModal(false)}>Cancel</button>
+                <button type="submit" className="btn-primary btn-green" disabled={isRouting}>{isRouting ? 'Routing...' : 'Find Route'}</button>
               </div>
             </form>
           </div>
