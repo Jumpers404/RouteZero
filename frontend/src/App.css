@@ -908,3 +908,100 @@ input[type="range"]:active::-webkit-slider-thumb {
   background-color: rgba(148, 163, 184, 0.3);
   margin: 0 1rem;
 }
+
+.control-select {
+  width: 100%;
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  padding: 0.65rem 0.75rem;
+  font-family: inherit;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--text-main);
+  background: rgba(255, 255, 255, 0.75);
+  outline: none;
+}
+
+.control-select:focus {
+  border-color: var(--brand-blue);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+}
+
+.toggle-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.75rem;
+}
+
+.platoon-toggle {
+  border: 1px solid var(--border-color);
+  background: rgba(255, 255, 255, 0.75);
+  color: var(--text-main);
+  border-radius: 9999px;
+  padding: 0.35rem 0.75rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.platoon-toggle.enabled {
+  background: rgba(16, 185, 129, 0.15);
+  color: #047857;
+  border-color: rgba(16, 185, 129, 0.5);
+}
+
+.projection-pill {
+  margin-top: 0.9rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid rgba(148, 163, 184, 0.25);
+  background: rgba(255, 255, 255, 0.65);
+  border-radius: 12px;
+  padding: 0.6rem 0.75rem;
+  font-size: 0.8125rem;
+}
+
+.projection-pill strong {
+  font-size: 0.85rem;
+  color: #047857;
+}
+
+.mini-note {
+  margin-top: 0.75rem;
+  margin-bottom: 0;
+  font-size: 0.74rem;
+  color: var(--text-muted);
+}
+
+.summary-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.15rem;
+}
+
+.map-legend {
+  margin-top: 0.45rem;
+  border-top: 1px solid rgba(226, 232, 240, 0.7);
+  padding-top: 0.55rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.38rem;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.map-legend > div {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.legend-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  display: inline-block;
+}
